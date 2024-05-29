@@ -3,7 +3,12 @@ using UnityEngine;
 public class PlayerInputs : MonoBehaviour
 {
     private Inputs _gameInputs;
+    private PlayerStateMachine _playerStateMachine;
 
+    private void Awake()
+    {
+        _playerStateMachine = GetComponent<PlayerStateMachine>();
+    }
 
     public void OnEnable()
     {
@@ -13,19 +18,19 @@ public class PlayerInputs : MonoBehaviour
 
             _gameInputs.Locomotion.Up.performed += (val) =>
             {
-                Debug.Log("UP");
+                _playerStateMachine.SetState(_playerStateMachine.moveUpState);
             };
             _gameInputs.Locomotion.Up.canceled += (val) =>
             {
-                Debug.Log("IDLE");
+                _playerStateMachine.SetState(_playerStateMachine.idleState);
             };
             _gameInputs.Locomotion.Down.performed += (val) =>
             {
-                Debug.Log("DOWN");
+                _playerStateMachine.SetState(_playerStateMachine.moveDownState);
             };
             _gameInputs.Locomotion.Down.canceled += (val) =>
             {
-                Debug.Log("IDLE");
+                _playerStateMachine.SetState(_playerStateMachine.idleState);
             };
         }
 
