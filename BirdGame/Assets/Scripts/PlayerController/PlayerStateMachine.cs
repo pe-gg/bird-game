@@ -2,12 +2,10 @@ using UnityEngine;
 
 public class PlayerStateMachine : MonoBehaviour
 {
-    [SerializeField] public float speed = 1;
-
-    public Rigidbody rb;
     public PlayerIdleState idleState;
     public PlayerGlideState glideState;
     public PlayerFallState fallState;
+    public GlidingSystem glidingSystem;
 
     private IState _currentState;
 
@@ -24,7 +22,7 @@ public class PlayerStateMachine : MonoBehaviour
         glideState = new PlayerGlideState(this);
         fallState = new PlayerFallState(this);
 
-        rb = GetComponent<Rigidbody>();
+        glidingSystem = GetComponent<GlidingSystem>();
 
         //Set player default state
         SetState(idleState);

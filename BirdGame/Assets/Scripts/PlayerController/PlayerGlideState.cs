@@ -13,24 +13,19 @@ public class PlayerGlideState : IState
 
     public void EnterState()
     {
-        _stateMachine.rb.useGravity = false;
         Debug.Log("EnterState GLIDE");
+        _stateMachine.glidingSystem.Glide();
     }
 
     public void ExitState()
     {
-        _stateMachine.rb.useGravity = true;
         Debug.Log("ExitState GLIDE");
+        _stateMachine.glidingSystem.StopCoroutines();
     }
 
     public void UpdateState()
     {
-        Glide();
         Debug.Log("UpdateState GLIDE");
     }
 
-    private void Glide()
-    {
-        _stateMachine.rb.AddForce(Vector3.right * _stateMachine.speed);
-    }
 }

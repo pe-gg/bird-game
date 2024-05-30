@@ -1,32 +1,53 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class GlidingSystem : MonoBehaviour
 {
-    [SerializeField] private float _speed;
-
-    private float _currentSpeed;
+    [SerializeField] private float _speed = 0.2f;
     private Rigidbody _rb;
+    private IEnumerator moveCoroutine;
+    private IEnumerator glideCoroutine;
 
-    // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         _rb = GetComponent<Rigidbody>();
+        moveCoroutine = MoveCoroutine();
+        glideCoroutine = GlideCoroutine();
+    }
+
+    public void Move()
+    {
+        StartCoroutine(moveCoroutine);
     }
 
     public void Glide()
     {
-        Debug.Log("GLIDE");
+        _rb.useGravity = false;
+        StartCoroutine(glideCoroutine);
     }
 
-    public void Idle()
+    public void StopCoroutines()
     {
-        Debug.Log("IDLE");
+        _rb.useGravity = true;
+        StopAllCoroutines();
     }
 
-    public void Fall()
+    private IEnumerator MoveCoroutine()
     {
-        Debug.Log("FALL");
+        while (true)
+        {
+            _rb.AddForce(Vector3.right * _speed);
+            yield return new WaitForFixedUpdate();
+        }
     }
+
+    private IEnumerator GlideCoroutine()
+    {
+        while (true)
+        {
+            StartCoroutine(moveCoroutine);
+            yield return new WaitForFixedUpdate();
+        }
+    }
+
 }

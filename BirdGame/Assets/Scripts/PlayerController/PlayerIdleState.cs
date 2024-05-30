@@ -13,21 +13,18 @@ public class PlayerIdleState : IState
     public void EnterState()
     {
         Debug.Log("EnterState IDLE");
+        _stateMachine.glidingSystem.Move();
     }
 
     public void ExitState()
     {
         Debug.Log("ExitState IDLE");
+        _stateMachine.glidingSystem.StopCoroutines();
     }
 
     public void UpdateState()
     {
-        Move();
         Debug.Log("UpdateState IDLE");
     }
 
-    private void Move()
-    {
-        _stateMachine.rb.AddForce(Vector3.right * _stateMachine.speed);
-    }
 }
