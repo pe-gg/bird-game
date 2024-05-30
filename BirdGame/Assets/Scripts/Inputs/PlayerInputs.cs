@@ -18,7 +18,7 @@ public class PlayerInputs : MonoBehaviour
 
             _gameInputs.Locomotion.Up.performed += (val) =>
             {
-                _playerStateMachine.SetState(_playerStateMachine.moveUpState);
+                _playerStateMachine.SetState(_playerStateMachine.glideState);
             };
             _gameInputs.Locomotion.Up.canceled += (val) =>
             {
@@ -26,7 +26,7 @@ public class PlayerInputs : MonoBehaviour
             };
             _gameInputs.Locomotion.Down.performed += (val) =>
             {
-                _playerStateMachine.SetState(_playerStateMachine.moveDownState);
+                _playerStateMachine.SetState(_playerStateMachine.fallState);
             };
             _gameInputs.Locomotion.Down.canceled += (val) =>
             {

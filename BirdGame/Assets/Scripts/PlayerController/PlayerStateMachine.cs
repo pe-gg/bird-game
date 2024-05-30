@@ -2,11 +2,14 @@ using UnityEngine;
 
 public class PlayerStateMachine : MonoBehaviour
 {
-    private IState _currentState;
+    [SerializeField] public float speed = 1;
 
+    public Rigidbody rb;
     public PlayerIdleState idleState;
-    public PlayerMoveUpState moveUpState;
-    public PlayerMoveDownState moveDownState;
+    public PlayerGlideState glideState;
+    public PlayerFallState fallState;
+
+    private IState _currentState;
 
     public void SetState(IState newState)
     {
@@ -18,8 +21,10 @@ public class PlayerStateMachine : MonoBehaviour
     private void Awake()
     {
         idleState = new PlayerIdleState(this);
-        moveUpState = new PlayerMoveUpState(this);
-        moveDownState = new PlayerMoveDownState(this);
+        glideState = new PlayerGlideState(this);
+        fallState = new PlayerFallState(this);
+
+        rb = GetComponent<Rigidbody>();
 
         //Set player default state
         SetState(idleState);

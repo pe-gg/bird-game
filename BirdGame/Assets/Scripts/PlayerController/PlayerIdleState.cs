@@ -22,6 +22,12 @@ public class PlayerIdleState : IState
 
     public void UpdateState()
     {
+        Move();
         Debug.Log("UpdateState IDLE");
+    }
+
+    private void Move()
+    {
+        _stateMachine.rb.AddForce(Vector3.right * _stateMachine.speed);
     }
 }
