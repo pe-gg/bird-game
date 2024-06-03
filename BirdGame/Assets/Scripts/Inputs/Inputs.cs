@@ -44,6 +44,15 @@ public partial class @Inputs: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""UpDraft"",
+                    ""type"": ""Button"",
+                    ""id"": ""892ea1cd-66b2-4141-a1c6-4ecf15a3f590"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -90,6 +99,17 @@ public partial class @Inputs: IInputActionCollection2, IDisposable
                     ""action"": ""Down"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1da09799-0b10-4b11-b1b3-a4a69472a310"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""UpDraft"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -106,6 +126,7 @@ public partial class @Inputs: IInputActionCollection2, IDisposable
         m_Locomotion = asset.FindActionMap("Locomotion", throwIfNotFound: true);
         m_Locomotion_Up = m_Locomotion.FindAction("Up", throwIfNotFound: true);
         m_Locomotion_Down = m_Locomotion.FindAction("Down", throwIfNotFound: true);
+        m_Locomotion_UpDraft = m_Locomotion.FindAction("UpDraft", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -169,12 +190,14 @@ public partial class @Inputs: IInputActionCollection2, IDisposable
     private List<ILocomotionActions> m_LocomotionActionsCallbackInterfaces = new List<ILocomotionActions>();
     private readonly InputAction m_Locomotion_Up;
     private readonly InputAction m_Locomotion_Down;
+    private readonly InputAction m_Locomotion_UpDraft;
     public struct LocomotionActions
     {
         private @Inputs m_Wrapper;
         public LocomotionActions(@Inputs wrapper) { m_Wrapper = wrapper; }
         public InputAction @Up => m_Wrapper.m_Locomotion_Up;
         public InputAction @Down => m_Wrapper.m_Locomotion_Down;
+        public InputAction @UpDraft => m_Wrapper.m_Locomotion_UpDraft;
         public InputActionMap Get() { return m_Wrapper.m_Locomotion; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -190,6 +213,9 @@ public partial class @Inputs: IInputActionCollection2, IDisposable
             @Down.started += instance.OnDown;
             @Down.performed += instance.OnDown;
             @Down.canceled += instance.OnDown;
+            @UpDraft.started += instance.OnUpDraft;
+            @UpDraft.performed += instance.OnUpDraft;
+            @UpDraft.canceled += instance.OnUpDraft;
         }
 
         private void UnregisterCallbacks(ILocomotionActions instance)
@@ -200,6 +226,9 @@ public partial class @Inputs: IInputActionCollection2, IDisposable
             @Down.started -= instance.OnDown;
             @Down.performed -= instance.OnDown;
             @Down.canceled -= instance.OnDown;
+            @UpDraft.started -= instance.OnUpDraft;
+            @UpDraft.performed -= instance.OnUpDraft;
+            @UpDraft.canceled -= instance.OnUpDraft;
         }
 
         public void RemoveCallbacks(ILocomotionActions instance)
@@ -230,5 +259,6 @@ public partial class @Inputs: IInputActionCollection2, IDisposable
     {
         void OnUp(InputAction.CallbackContext context);
         void OnDown(InputAction.CallbackContext context);
+        void OnUpDraft(InputAction.CallbackContext context);
     }
 }

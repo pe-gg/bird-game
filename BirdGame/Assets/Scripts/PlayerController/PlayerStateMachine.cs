@@ -5,6 +5,8 @@ public class PlayerStateMachine : MonoBehaviour
     public PlayerIdleState idleState;
     public PlayerGlideState glideState;
     public PlayerFallState fallState;
+    public PlayerUpState upState;
+    public UpdraftSystem updraftSystem;
     public GlidingSystem glidingSystem;
 
     private IState _currentState;
@@ -21,8 +23,10 @@ public class PlayerStateMachine : MonoBehaviour
         idleState = new PlayerIdleState(this);
         glideState = new PlayerGlideState(this);
         fallState = new PlayerFallState(this);
+        upState = new PlayerUpState(this);
 
         glidingSystem = GetComponent<GlidingSystem>();
+        updraftSystem = GetComponent<UpdraftSystem>();
 
         //Set player default state
         SetState(idleState);

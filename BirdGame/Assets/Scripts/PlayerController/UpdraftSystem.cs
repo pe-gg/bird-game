@@ -1,19 +1,26 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-public class GlidingSystem : MonoBehaviour
+public class UpdraftSystem : MonoBehaviour
 {
     [SerializeField] private float _speed = 0.2f;
     private Rigidbody _rb;
     private IEnumerator moveCoroutine;
-    private IEnumerator glideCoroutine;
+    private IEnumerator upDraftCoroutine;
+    private IEnumerator gravityCoroutine;
     [SerializeField] private float maxSpeed;
+
+
 
     void Awake()
     {
         _rb = GetComponent<Rigidbody>();
         moveCoroutine = MoveCoroutine();
-        glideCoroutine = GlideCoroutine();
+        upDraftCoroutine = UpDraftCoroutine();
+        gravityCoroutine = GravityCoroutine();  
+
+
     }
 
     public void Move()
@@ -21,15 +28,14 @@ public class GlidingSystem : MonoBehaviour
         StartCoroutine(moveCoroutine);
     }
 
-    public void Glide()
+    public void UpDraft()
     {
         
-        StartCoroutine(glideCoroutine);
+        StartCoroutine(upDraftCoroutine);
     }
 
     public void StopCoroutines()
     {
-                    
         StopAllCoroutines();
     }
 
@@ -37,12 +43,12 @@ public class GlidingSystem : MonoBehaviour
     {
         while (true)
         {
-            _rb.AddForce(Vector3.right * _speed);
+            _rb.AddForce(Vector3.up * _speed);
             yield return new WaitForFixedUpdate();
         }
     }
 
-    private IEnumerator GlideCoroutine()
+    private IEnumerator UpDraftCoroutine()
     {
         while (true)
         {
@@ -51,12 +57,25 @@ public class GlidingSystem : MonoBehaviour
         }
     }
 
+    private IEnumerator GravityCoroutine()
+    {
+        while(true)
+        {
+            yield return new WaitForSeconds(3);
+            _rb.useGravity = true;
+        }
+    }
+
     private void FixedUpdate()
     {
-        if (_rb.velocity.magnitude > maxSpeed)
+
+        Vector3 velocity = _rb.velocity;
+
+        if (Mathf.Abs(velocity.y) > maxSpeed)
         {
-            _rb.velocity = _rb.velocity.normalized * maxSpeed;
+            velocity.y = Mathf.Sign(velocity.y) * maxSpeed;
         }
+        _rb.velocity = velocity;
     }
 
 }
