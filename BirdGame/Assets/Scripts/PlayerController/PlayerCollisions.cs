@@ -21,8 +21,12 @@ public class PlayerCollisions : MonoBehaviour
         if (other.CompareTag("BoostObject")) //you should definitely use an interface for this, but we don't have too many collisions so just keeping it simple.
         {
             Debug.Log("Boost!");
+            BoostObject bo = other.gameObject.GetComponent<BoostObject>();
             //_rb.velocity = new Vector3(_rb.velocity.x, 0, 0); //set the player's y velocity to 0 so that any downwards force does not interfere
-            _rb.AddForce(Vector3.up * _boostForce, ForceMode.Impulse);
+            if (bo.thrustUpwards)
+                _rb.AddForce(Vector3.up * _boostForce, ForceMode.Impulse);
+            else
+                _rb.AddForce(Vector3.down * _boostForce, ForceMode.Impulse);
         }
 
         if (other.CompareTag("Obstacle"))
