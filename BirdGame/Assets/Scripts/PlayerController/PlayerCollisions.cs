@@ -35,6 +35,7 @@ public class PlayerCollisions : MonoBehaviour
         {
             Debug.Log("Pickup collected");
             Destroy(other.gameObject);
+            
         }
     }
 }
