@@ -18,12 +18,9 @@ public class UpdraftSystem : MonoBehaviour
     void Awake()
     {
         _rb = GetComponent<Rigidbody>();
-        _rb.useGravity = false;
         moveCoroutine = MoveCoroutine();
         upDraftCoroutine = UpDraftCoroutine();
-        gravityCoroutine = GravityCoroutine();
         moveDownCoroutine = MoveDownCoroutine();
-        StartCoroutine(GravityCoroutine());
 
 
     }
@@ -66,15 +63,7 @@ public class UpdraftSystem : MonoBehaviour
             yield return new WaitForFixedUpdate();
         }
     }
-
-    private IEnumerator GravityCoroutine()
-    {
-        while(true)
-        {
-            yield return new WaitForSeconds(gravityDelay);
-            _rb.useGravity = true;
-        }
-    }
+    
 
     private void FixedUpdate()
     {
