@@ -1,18 +1,26 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private String _scene;
+    
+    #region Restart
+    public void Restart()
+    {
+        SceneManager.LoadScene(_scene);
+        Time.timeScale = 1.0f;
+        
+
+    }
+
+    private void Awake()
     {
         
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    #endregion
 }
