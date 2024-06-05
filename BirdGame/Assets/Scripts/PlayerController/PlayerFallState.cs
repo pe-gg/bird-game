@@ -13,11 +13,13 @@ public class PlayerFallState : IState
     public void EnterState()
     {
         Debug.Log("EnterState FALL");
+        _stateMachine.updraftSystem.DownDraft();
     }
 
     public void ExitState()
     {
         Debug.Log("ExitState FALL");
+        _stateMachine.updraftSystem.StopCoroutines();
     }
 
     public void UpdateState()

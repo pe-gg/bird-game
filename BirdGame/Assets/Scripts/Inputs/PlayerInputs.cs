@@ -38,7 +38,7 @@ public class PlayerInputs : MonoBehaviour
             };
             _gameInputs.Locomotion.UpDraft.canceled += (val) =>
             {
-                _playerStateMachine.SetState(_playerStateMachine.fallState);
+                _playerStateMachine.SetState(_playerStateMachine.idleState);
             };
         }
 
