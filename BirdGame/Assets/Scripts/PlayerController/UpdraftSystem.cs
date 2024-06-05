@@ -10,15 +10,18 @@ public class UpdraftSystem : MonoBehaviour
     private IEnumerator upDraftCoroutine;
     private IEnumerator gravityCoroutine;
     [SerializeField] private float maxSpeed;
+    [SerializeField] private float gravityDelay;
 
 
 
     void Awake()
     {
         _rb = GetComponent<Rigidbody>();
+        _rb.useGravity = false;
         moveCoroutine = MoveCoroutine();
         upDraftCoroutine = UpDraftCoroutine();
-        gravityCoroutine = GravityCoroutine();  
+        gravityCoroutine = GravityCoroutine();
+        StartCoroutine(GravityCoroutine());
 
 
     }
@@ -61,7 +64,7 @@ public class UpdraftSystem : MonoBehaviour
     {
         while(true)
         {
-            yield return new WaitForSeconds(3);
+            yield return new WaitForSeconds(gravityDelay);
             _rb.useGravity = true;
         }
     }
