@@ -38,7 +38,9 @@ public class PlayerCollisions : MonoBehaviour
         if (other.CompareTag("Pickup"))
         {
             Debug.Log("Pickup collected");
-            Destroy(other.gameObject);
+            Collectable pickup = other.gameObject.GetComponent<Collectable>();
+            pickup.collected = true;
+            other.gameObject.SetActive(false);
             
         }
     }
