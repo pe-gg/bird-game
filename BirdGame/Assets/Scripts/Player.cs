@@ -14,6 +14,9 @@ public class Player : MonoBehaviour
     
     private GameManager _gameManager;
 
+    [SerializeField] private float deathPointLow;
+    [SerializeField] private float deathPointHigh;
+
     private void Awake()
     {
         _gameManager = FindObjectOfType<GameManager>();
@@ -26,6 +29,15 @@ public class Player : MonoBehaviour
             _gameOverMenu.HandleGameOver();
             Debug.Log("gameover");
             
+        }
+    }
+
+    private void FixedUpdate()
+    {
+        if (this.transform.position.y <= deathPointLow || this.transform.position.y >= deathPointHigh )
+        {
+            _gameOverMenu.HandleGameOver();
+            Debug.Log("gameover");
         }
     }
 }
