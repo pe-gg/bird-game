@@ -30,5 +30,11 @@ public class PlayerCollisions : MonoBehaviour
             Debug.Log("Obstacle hit");
             _rb.velocity = new Vector3(-_obstacleHitForce, -(_obstacleHitForce / 3), 0);
         }
+
+        if (other.CompareTag("Pickup"))
+        {
+            Debug.Log("Pickup collected");
+            Destroy(other.gameObject);
+        }
     }
 }

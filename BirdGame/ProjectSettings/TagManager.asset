@@ -7,6 +7,7 @@ TagManager:
   - Ground
   - BoostObject
   - Obstacle
+  - Pickup
   layers:
   - Default
   - TransparentFX
