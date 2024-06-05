@@ -1,5 +1,8 @@
+using System;
 using System.Collections;
 using UnityEngine;
+using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
 public class GlidingSystem : MonoBehaviour
 {
@@ -7,6 +10,7 @@ public class GlidingSystem : MonoBehaviour
     private Rigidbody _rb;
     private IEnumerator moveCoroutine;
     private IEnumerator glideCoroutine;
+    [SerializeField] private float maxSpeed;
 
     void Awake()
     {
@@ -22,13 +26,13 @@ public class GlidingSystem : MonoBehaviour
 
     public void Glide()
     {
-        _rb.useGravity = false;
+        
         StartCoroutine(glideCoroutine);
     }
 
     public void StopCoroutines()
     {
-        _rb.useGravity = true;
+                    
         StopAllCoroutines();
     }
 
@@ -36,7 +40,7 @@ public class GlidingSystem : MonoBehaviour
     {
         while (true)
         {
-            _rb.AddForce(Vector3.right * _speed);
+            
             yield return new WaitForFixedUpdate();
         }
     }
@@ -50,4 +54,26 @@ public class GlidingSystem : MonoBehaviour
         }
     }
 
+    private void FixedUpdate()
+    {
+        
+        if (_rb.velocity.magnitude > maxSpeed)
+        {
+            _rb.velocity = _rb.velocity.normalized * maxSpeed;
+        }
+    }
+
+    private void Update()
+    {
+        _rb.AddForce(Vector3.right * _speed);
+    }
+
+    private void OnTriggerEnter (Collider other)
+    {
+        if (other.CompareTag("Ground"))
+        {
+            _rb.velocity = new Vector3(_rb.velocity.x, 0, 0);
+        }
+        
+    }    
 }

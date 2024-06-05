@@ -32,6 +32,14 @@ public class PlayerInputs : MonoBehaviour
             {
                 _playerStateMachine.SetState(_playerStateMachine.idleState);
             };
+            _gameInputs.Locomotion.UpDraft.performed += (val) =>
+            {
+                _playerStateMachine.SetState(_playerStateMachine.upState);
+            };
+            _gameInputs.Locomotion.UpDraft.canceled += (val) =>
+            {
+                _playerStateMachine.SetState(_playerStateMachine.fallState);
+            };
         }
 
         _gameInputs.Locomotion.Enable();

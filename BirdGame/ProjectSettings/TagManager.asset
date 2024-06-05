@@ -15,7 +15,7 @@ TagManager:
   - 
   - Water
   - UI
-  - 
+  - Player
   - 
   - 
   - 
@@ -42,6 +42,12 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Player
+    uniqueID: 365921643
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: effects
+    uniqueID: 1686885993
     locked: 0
