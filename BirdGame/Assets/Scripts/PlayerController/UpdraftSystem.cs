@@ -9,6 +9,7 @@ public class UpdraftSystem : MonoBehaviour
     private IEnumerator moveCoroutine;
     private IEnumerator upDraftCoroutine;
     private IEnumerator gravityCoroutine;
+    private IEnumerator moveDownCoroutine;
     [SerializeField] private float maxSpeed;
     [SerializeField] private float gravityDelay;
 
@@ -21,6 +22,7 @@ public class UpdraftSystem : MonoBehaviour
         moveCoroutine = MoveCoroutine();
         upDraftCoroutine = UpDraftCoroutine();
         gravityCoroutine = GravityCoroutine();
+        moveDownCoroutine = MoveDownCoroutine();
         StartCoroutine(GravityCoroutine());
 
 
@@ -35,6 +37,11 @@ public class UpdraftSystem : MonoBehaviour
     {
         
         StartCoroutine(upDraftCoroutine);
+    }
+
+    public void DownDraft()
+    {
+        StartCoroutine(DownDraftCoroutine());
     }
 
     public void StopCoroutines()
@@ -80,5 +87,25 @@ public class UpdraftSystem : MonoBehaviour
         }
         _rb.velocity = velocity;
     }
+    
+    private IEnumerator MoveDownCoroutine()
+    {
+        while (true)
+        {
+            _rb.AddForce(Vector3.down * _speed);
+            yield return new WaitForFixedUpdate();
+        }
+    }
+    
+    private IEnumerator DownDraftCoroutine()
+    {
+        while (true)
+        {
+            StartCoroutine(moveDownCoroutine);
+            yield return new WaitForFixedUpdate();
+        }
+    }
 
 }
+
+

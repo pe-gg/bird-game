@@ -7,13 +7,16 @@ public class PlayerCollisions : MonoBehaviour
 {
     [SerializeField] private float _boostForce = 2f;
     [SerializeField] private float _obstacleHitForce = 10f;
+    [SerializeField] AudioManager audioManager;
     private BoxCollider _col;
     private Rigidbody _rb;
+    private GameManager _gameManager;
     
     private void Awake()
     {
         _col = GetComponent<BoxCollider>();
         _rb = GetComponent<Rigidbody>();
+        _gameManager = FindObjectOfType<GameManager>();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -23,6 +26,9 @@ public class PlayerCollisions : MonoBehaviour
             Debug.Log("Boost!");
             BoostObject bo = other.gameObject.GetComponent<BoostObject>();
             //_rb.velocity = new Vector3(_rb.velocity.x, 0, 0); //set the player's y velocity to 0 so that any downwards force does not interfere
+
+            audioManager.Play("Wind");
+
             if (bo.thrustUpwards)
                 _rb.AddForce(Vector3.up * _boostForce, ForceMode.Impulse);
             else
@@ -31,12 +37,16 @@ public class PlayerCollisions : MonoBehaviour
 
         if (other.CompareTag("Obstacle"))
         {
+            audioManager.Play("Uncrumpling");
+
             Debug.Log("Obstacle hit");
             _rb.velocity = new Vector3(-_obstacleHitForce, -(_obstacleHitForce / 3), 0);
         }
 
         if (other.CompareTag("Pickup"))
         {
+            audioManager.Play("Crumpling");
+
             Debug.Log("Pickup collected");
             Collectable pickup = other.gameObject.GetComponent<Collectable>();
             pickup.collected = true;

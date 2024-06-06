@@ -8,6 +8,7 @@ public class PlayerStateMachine : MonoBehaviour
     public PlayerUpState upState;
     public UpdraftSystem updraftSystem;
     public GlidingSystem glidingSystem;
+    public AudioManager audioManager;
 
     private IState _currentState;
 
@@ -27,6 +28,7 @@ public class PlayerStateMachine : MonoBehaviour
 
         glidingSystem = GetComponent<GlidingSystem>();
         updraftSystem = GetComponent<UpdraftSystem>();
+        audioManager = GetComponent<AudioManager>();
 
         //Set player default state
         SetState(idleState);
