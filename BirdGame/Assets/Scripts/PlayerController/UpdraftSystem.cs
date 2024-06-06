@@ -53,7 +53,7 @@ public class UpdraftSystem : MonoBehaviour
     {
         while (true)
         {
-            _rb.AddForce(Vector3.up * _speed);
+            _rb.AddForce(Vector3.up * _speed * Time.fixedDeltaTime);
             yield return new WaitForFixedUpdate();
         }
     }
@@ -92,7 +92,7 @@ public class UpdraftSystem : MonoBehaviour
     {
         while (true)
         {
-            _rb.AddForce(Vector3.down * _speed);
+            _rb.AddForce(Vector3.down * _speed * Time.fixedDeltaTime);
             yield return new WaitForFixedUpdate();
         }
     }
