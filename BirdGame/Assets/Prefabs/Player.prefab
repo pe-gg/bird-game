@@ -133,7 +133,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba70c598105db74438425a2f1b847122, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _boostForce: 2
+  _boostForce: 10
   _obstacleHitForce: 10
 --- !u!114 &6479484677244327971
 MonoBehaviour:
@@ -149,6 +149,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _playerHUD: {fileID: 0}
   _gameOverMenu: {fileID: 0}
+  deathPointLow: -25
+  deathPointHigh: 25
+  _time: 1
 --- !u!1001 &169637756253527339
 PrefabInstance:
   m_ObjectHideFlags: 0
