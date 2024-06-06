@@ -8,6 +8,7 @@ TagManager:
   - BoostObject
   - Obstacle
   - Pickup
+  - damagingObstacle
   layers:
   - Default
   - TransparentFX

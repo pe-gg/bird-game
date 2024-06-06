@@ -10,11 +10,13 @@ public class PlayerCollisions : MonoBehaviour
     [SerializeField] AudioManager audioManager;
     private BoxCollider _col;
     private Rigidbody _rb;
+    private GameManager _gameManager;
     
     private void Awake()
     {
         _col = GetComponent<BoxCollider>();
         _rb = GetComponent<Rigidbody>();
+        _gameManager = FindObjectOfType<GameManager>();
     }
 
     private void OnTriggerEnter(Collider other)

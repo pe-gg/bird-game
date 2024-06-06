@@ -31,11 +31,11 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Obstacle"))
+        
+        if (other.CompareTag("damagingObstacle"))
         {
+            Debug.Log("gameOver");
             _gameOverMenu.HandleGameOver();
-            Debug.Log("gameover");
-            
         }
     }
 
