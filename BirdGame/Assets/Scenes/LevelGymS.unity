@@ -123,6 +123,60 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &69824425
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 69824427}
+  - component: {fileID: 69824426}
+  m_Layer: 0
+  m_Name: '[AudioManager]'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &69824426
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 69824425}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b623132083f8bc3419a51ebe8b455051, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - clip: {fileID: 8300000, guid: c195f8a614ff1034094a2aff6896b541, type: 3}
+    name: Crumpling
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: 284dfed9ce8ca2048ae5d261c36f17fa, type: 3}
+    name: Uncrumpling
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: d0261704949ad0a45ac14a14584040dd, type: 3}
+    name: Wind
+    source: {fileID: 0}
+--- !u!4 &69824427
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 69824425}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 55.563965, y: -4.026944, z: 15.10916}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &152006101
 GameObject:
   m_ObjectHideFlags: 0
@@ -1652,6 +1706,11 @@ PrefabInstance:
       propertyPath: _boostForce
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: -5962625386569418720, guid: 30dfd2b2d8580cb45badcde8c1be6da5,
+        type: 3}
+      propertyPath: audioManager
+      value: 
+      objectReference: {fileID: 69824426}
     - target: {fileID: 1466432626083555218, guid: 30dfd2b2d8580cb45badcde8c1be6da5,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -1753,3 +1812,4 @@ SceneRoots:
   - {fileID: 1826810695}
   - {fileID: 1005398283}
   - {fileID: 976786476}
+  - {fileID: 69824427}
