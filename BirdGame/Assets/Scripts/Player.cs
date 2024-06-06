@@ -14,6 +14,7 @@ public class Player : MonoBehaviour
     
     private GameManager _gameManager;
     private Rigidbody _rb;
+    private Animator _animator;
 
     [SerializeField] private float deathPointLow;
     [SerializeField] private float deathPointHigh;
@@ -22,7 +23,7 @@ public class Player : MonoBehaviour
 
     private void Awake()
     {
-        
+        _animator = GetComponent<Animator>();
         _gameManager = FindObjectOfType<GameManager>();
         _rb = GetComponent<Rigidbody>();
         _rb.useGravity = false;
@@ -34,8 +35,12 @@ public class Player : MonoBehaviour
         
         if (other.CompareTag("damagingObstacle"))
         {
+            _animator.enabled = true;
+            _animator.Play("PlaneCrumple");
+            _rb.velocity = Vector3.down *100f;
+            _rb.mass = 1000;
             Debug.Log("gameOver");
-            _gameOverMenu.HandleGameOver();
+            Invoke("Die", 2.0f);
         }
     }
 
@@ -43,7 +48,11 @@ public class Player : MonoBehaviour
     {
         if (this.transform.position.y <= deathPointLow || this.transform.position.y >= deathPointHigh )
         {
-            _gameOverMenu.HandleGameOver();
+            _animator.enabled = true;
+            _animator.Play("PlaneCrumple");
+            _rb.velocity = Vector3.down *100f;
+            _rb.mass = 1000;
+            Invoke("Die", 2.0f);
             Debug.Log("gameover");
         }
     }
@@ -51,5 +60,10 @@ public class Player : MonoBehaviour
     private void Grav()
     {
         _rb.useGravity = true;
+    }
+
+    private void Die()
+    {
+        _gameOverMenu.HandleGameOver();
     }
 }
