@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6156137196406528691}
   m_Layer: 0
   m_Name: BoostObject
-  m_TagString: FowardBoostObject
+  m_TagString: BoostObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
