@@ -18,6 +18,11 @@ public class AudioManager : MonoBehaviour
     public void Play(string name)
     {
         Sound sound = Array.Find(sounds, sound => sound.name == name); //find a sound in array based on parameter "name"
-        sound.source.Play(); //execute a sound
+        
+        if(!sound.source.isPlaying)
+        {
+            sound.source.Play(); //execute a sound
+        }
+        
     }
 }
