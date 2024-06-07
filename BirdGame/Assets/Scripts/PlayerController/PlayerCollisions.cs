@@ -12,6 +12,7 @@ public class PlayerCollisions : MonoBehaviour
     private Rigidbody _rb;
     private GameManager _gameManager;
     private GlidingSystem _gliding;
+    private PlayerHUD _playerHUD;
     
     private void Awake()
     {
@@ -19,6 +20,7 @@ public class PlayerCollisions : MonoBehaviour
         _col = GetComponent<BoxCollider>();
         _rb = GetComponent<Rigidbody>();
         _gameManager = FindObjectOfType<GameManager>();
+        _playerHUD = FindObjectOfType<PlayerHUD>();   
     }
 
     private void OnTriggerEnter(Collider other)
@@ -71,6 +73,8 @@ public class PlayerCollisions : MonoBehaviour
             Collectable pickup = other.gameObject.GetComponent<Collectable>();
             pickup.collected = true;
             other.gameObject.SetActive(false);
+            _playerHUD._score++;
+
             
         }
         
