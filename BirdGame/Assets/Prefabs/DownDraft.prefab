@@ -168,6 +168,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5457442808149925160, guid: 9789f66967bcd3b459a4339cd1f52f04,
         type: 3}
+      propertyPath: prewarm
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5457442808149925160, guid: 9789f66967bcd3b459a4339cd1f52f04,
+        type: 3}
       propertyPath: lengthInSec
       value: 10
       objectReference: {fileID: 0}

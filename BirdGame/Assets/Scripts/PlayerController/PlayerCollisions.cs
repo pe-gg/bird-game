@@ -40,7 +40,7 @@ public class PlayerCollisions : MonoBehaviour
 
             else if(bo.thrustFowards)
             {
-                _gliding.maxSpeed = 50.0f;
+                _gliding.maxSpeed = 75.0f;
                _rb.velocity = Vector3.right *_boostForce;
                Invoke("MaxSpeed", 2.0f);
             }
