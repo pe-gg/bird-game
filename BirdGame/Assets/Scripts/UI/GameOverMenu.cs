@@ -33,7 +33,7 @@ public class GameOverMenu : MonoBehaviour
         {
             if (_gameManager.collectables[i].collected) //if the collectable at the current array was collected,
             {
-                _papers[Math.Clamp(i,0,_papers.Length)].gameObject.SetActive(true); //set the corresponding paper to be set as active
+                _papers[Math.Clamp(i,0,_papers.Length)].gameObject.SetActive(true);//set the corresponding paper to be set as active
             }
         }
     }
