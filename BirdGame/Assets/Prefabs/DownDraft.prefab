@@ -69,6 +69,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   thrustUpwards: 0
+  thrustFowards: 0
 --- !u!1 &5429046189020377563
 GameObject:
   m_ObjectHideFlags: 0
