@@ -5,4 +5,5 @@ using UnityEngine;
 public class BoostObject : MonoBehaviour
 {
     [SerializeField] public bool thrustUpwards = true;
+    [SerializeField] public bool thrustFowards = true;
 }
