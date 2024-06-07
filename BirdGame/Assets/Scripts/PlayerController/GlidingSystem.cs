@@ -10,7 +10,7 @@ public class GlidingSystem : MonoBehaviour
     private Rigidbody _rb;
     private IEnumerator moveCoroutine;
     private IEnumerator glideCoroutine;
-    [SerializeField] private float maxSpeed;
+    public float maxSpeed;
 
     void Awake()
     {

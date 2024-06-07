@@ -11,9 +11,11 @@ public class PlayerCollisions : MonoBehaviour
     private BoxCollider _col;
     private Rigidbody _rb;
     private GameManager _gameManager;
+    private GlidingSystem _gliding;
     
     private void Awake()
     {
+        _gliding = GetComponent<GlidingSystem>();
         _col = GetComponent<BoxCollider>();
         _rb = GetComponent<Rigidbody>();
         _gameManager = FindObjectOfType<GameManager>();
@@ -30,9 +32,27 @@ public class PlayerCollisions : MonoBehaviour
             audioManager.Play("Wind");
 
             if (bo.thrustUpwards)
-                _rb.AddForce(Vector3.up * _boostForce, ForceMode.Impulse);
-            else
-                _rb.AddForce(Vector3.down * _boostForce, ForceMode.Impulse);
+                
+            {
+                _rb.velocity = Vector3.up *_boostForce;
+                _rb.angularVelocity = Vector3.right *_boostForce;
+            }
+
+            else if(bo.thrustFowards)
+            {
+                _gliding.maxSpeed = 50.0f;
+               _rb.velocity = Vector3.right *_boostForce;
+               Invoke("MaxSpeed", 2.0f);
+            }
+
+            else if (!bo.thrustUpwards)
+            {
+                _rb.velocity = Vector3.down *_boostForce;
+                _rb.angularVelocity = Vector3.right *_boostForce;
+            }
+            
+            
+            
         }
 
         if (other.CompareTag("Obstacle"))
@@ -53,5 +73,14 @@ public class PlayerCollisions : MonoBehaviour
             other.gameObject.SetActive(false);
             
         }
+        
+        
+        
+        
+    }
+
+    private void MaxSpeed()
+    {
+        _gliding.maxSpeed = 25.0f;
     }
 }
